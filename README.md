@@ -1,1 +1,2 @@
 # GrongusAdventure
+Java based roguelike
