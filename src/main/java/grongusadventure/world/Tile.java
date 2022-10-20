@@ -18,6 +18,10 @@ public enum Tile {
 		this.tileColour = tileColour;
 	}
 	
+	public boolean isDiggable() {
+	    return this == Tile.WALL;
+	}
+	
 	public char getGlyph() {
 		return this.glyph;
 	}
@@ -25,5 +29,9 @@ public enum Tile {
 	public Color getColor() {
 		return this.tileColour;
 	}
+	
+    public boolean isGround() {
+        return this != WALL && this != BOUNDS;
+    }
 	
 }
