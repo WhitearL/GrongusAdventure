@@ -1,6 +1,7 @@
 package grongusadventure.world;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import grongusadventure.entities.Creature;
@@ -13,6 +14,7 @@ public class World {
 	private int height;
 	
 	public World(Tile[][] tileGrid) {
+		this.creatures = new ArrayList<>();
 		this.tileGrid = tileGrid;
 		this.width = tileGrid.length;
 		this.height = tileGrid[0].length;
@@ -24,17 +26,27 @@ public class World {
 		}
 	}
 
-	public void addAtEmptyLocation(Creature creature) {
-		int posX;
-		int posY;
-		
-		do {
-			posX = (int) Math.random() * width;
-			posY = (int) Math.random() * height;
-		} while (!getTile(posX, posY).isGround());
-		
-		creature.setPosX(posX);
-		creature.setPosY(posY);
+	public void addAtEmptyLocation(Creature creature){
+	    int x;
+	    int y;
+	  
+	    do {
+	        x = (int)(Math.random() * width);
+	        y = (int)(Math.random() * height);
+	    } 
+	    while (!getTile(x,y).isGround() || getCreature(x,y) != null);
+	  
+	    creature.setPosX(x);
+	    creature.setPosY(y);
+	    creatures.add(creature);
+	}
+	
+	public Creature getCreature(int x, int y){
+	    for (Creature c : creatures){
+	        if (c.getPosX() == x && c.getPosY() == y)
+	            return c;
+	    }
+	    return null;
 	}
 	
 	public Tile getTile(int posX, int posY) {

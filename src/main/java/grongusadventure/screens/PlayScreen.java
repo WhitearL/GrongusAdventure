@@ -15,13 +15,21 @@ public class PlayScreen implements Screen {
 	private int screenHeight;
 	private Creature player;
 	
-	public PlayScreen() {
-		screenWidth = 80;
-		screenHeight = 21;
-		createWorld();
-		
-		CreatureFactory creatureFactory = new CreatureFactory(world);
-		player = creatureFactory.createPlayer();
+	public PlayScreen(){
+	    screenWidth = 80;
+	    screenHeight = 21;
+	    createWorld();
+	  
+	    CreatureFactory creatureFactory = new CreatureFactory(world);
+	    createCreatures(creatureFactory);
+	}
+	
+	private void createCreatures(CreatureFactory creatureFactory){
+	    player = creatureFactory.createPlayer();
+	  
+	    for (int i = 0; i < 8; i++){
+	        creatureFactory.newFungus();
+	    }
 	}
 	
 	private void createWorld() {
@@ -29,14 +37,18 @@ public class PlayScreen implements Screen {
 	}
 	
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
-		for (int x = 0; x < screenWidth; x++) {
-			for (int y = 0; y < screenHeight; y++) {
-				int boundX = x + left;
-				int boundY = y + top;
-				
-				terminal.write(world.getTileGlyph(boundX, boundY), x, y, world.getTileColour(boundX, boundY));
-			}
-		}
+	    for (int x = 0; x < screenWidth; x++){
+	        for (int y = 0; y < screenHeight; y++){
+	            int wx = x + left;
+	            int wy = y + top;
+
+	            Creature creature = world.getCreature(wx, wy);
+	            if (creature != null)
+	                terminal.write(creature.getGlyph(), creature.getPosX() - left, creature.getPosY() - top, creature.getColour());
+	            else
+	                terminal.write(world.getTileGlyph(wx, wy), x, y, world.getTileColour(wx, wy));
+	        }
+	    }
 	}
 	
 	public int getScrollX() {

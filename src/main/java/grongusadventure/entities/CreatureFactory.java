@@ -12,6 +12,13 @@ public class CreatureFactory {
 		this.world = world;
 	}
 
+	public Creature newFungus(){
+	    Creature fungus = new Creature(world, 'f', AsciiPanel.green);
+	    world.addAtEmptyLocation(fungus);
+	    new FungusAI(fungus);
+	    return fungus;
+	}
+	
 	public Creature createPlayer() {
 		Creature player = new Creature(world, '@', AsciiPanel.brightWhite);
 		world.addAtEmptyLocation(player);
