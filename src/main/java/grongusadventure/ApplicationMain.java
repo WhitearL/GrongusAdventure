@@ -9,44 +9,46 @@ import grongusadventure.screens.StartScreen;
 
 public class ApplicationMain extends JFrame implements KeyListener {
 
-	private static final long serialVersionUID = -7895776404902719682L;
+    private static final long serialVersionUID = -7895776404902719682L;
 
-	private AsciiPanel terminal;
-	private Screen activeScreen;
-	
-	public ApplicationMain() {
-		super();
-		terminal = new AsciiPanel();
-		add(terminal);
-		pack();
-		activeScreen = new StartScreen();
-		addKeyListener(this);
-		repaint();
-	}
+    private AsciiPanel terminal;
+    private Screen activeScreen;
 
-	public static void main(String[] args) {
-		ApplicationMain app = new ApplicationMain();
-		app.setTitle("Grongus adventure");
-		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		app.setVisible(true);
-	}
+    public ApplicationMain() {
+	super();
+	terminal = new AsciiPanel();
+	add(terminal);
+	pack();
+	activeScreen = new StartScreen();
+	addKeyListener(this);
+	repaint();
+    }
 
-	public void repaint() {
-		terminal.clear();
-		activeScreen.display(terminal);
-		super.repaint();
-	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) { }
-	
-	@Override
-	public void keyTyped(KeyEvent e) { }
+    public static void main(String[] args) {
+	ApplicationMain app = new ApplicationMain();
+	app.setTitle("Grongus adventure");
+	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	app.setVisible(true);
+    }
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		activeScreen = activeScreen.respondToUserInput(e);
-		repaint();
-	}
+    public void repaint() {
+	terminal.clear();
+	activeScreen.display(terminal);
+	super.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+	activeScreen = activeScreen.respondToUserInput(e);
+	repaint();
+    }
 
 }

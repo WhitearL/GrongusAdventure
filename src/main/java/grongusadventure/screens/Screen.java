@@ -6,8 +6,8 @@ import asciiPanel.AsciiPanel;
 
 public interface Screen {
 
-	public void display(AsciiPanel terminal);
-	
-	public Screen respondToUserInput(KeyEvent key);
-	
+    public void display(AsciiPanel terminal);
+
+    public Screen respondToUserInput(KeyEvent key);
+
 }
