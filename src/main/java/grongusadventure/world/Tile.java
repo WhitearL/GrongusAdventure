@@ -1,8 +1,8 @@
 package grongusadventure.world;
 
-import java.awt.Color;
-
 import asciiPanel.AsciiPanel;
+
+import java.awt.*;
 
 public enum Tile {
 
@@ -10,28 +10,28 @@ public enum Tile {
     WALL((char) 177, AsciiPanel.yellow),
     BOUNDS('x', AsciiPanel.brightBlack);
 
-    private char glyph;
-    private Color tileColour;
+    private final char glyph;
+    private final Color tileColour;
 
     Tile(char glyph, Color tileColour) {
-	this.glyph = glyph;
-	this.tileColour = tileColour;
+        this.glyph = glyph;
+        this.tileColour = tileColour;
     }
 
     public boolean isDiggable() {
-	return this == Tile.WALL;
+        return this == Tile.WALL;
     }
 
     public char getGlyph() {
-	return this.glyph;
+        return this.glyph;
     }
 
     public Color getColor() {
-	return this.tileColour;
+        return this.tileColour;
     }
 
     public boolean isGround() {
-	return this != WALL && this != BOUNDS;
+        return this != WALL && this != BOUNDS;
     }
 
 }

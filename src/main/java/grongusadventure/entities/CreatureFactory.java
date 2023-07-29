@@ -6,24 +6,24 @@ import grongusadventure.world.World;
 
 public class CreatureFactory {
 
-    private World world;
+    private final World world;
 
     public CreatureFactory(World world) {
-	this.world = world;
+        this.world = world;
     }
 
     public Creature newFungus() {
-	Creature fungus = new Creature(world, 'f', AsciiPanel.green);
-	world.addAtEmptyLocation(fungus);
-	new FungusAI(fungus);
-	return fungus;
+        Creature fungus = new Creature(world, 'f', AsciiPanel.green);
+        world.addAtEmptyLocation(fungus);
+        new FungusAI(fungus);
+        return fungus;
     }
 
     public Creature createPlayer() {
-	Creature player = new Creature(world, '@', AsciiPanel.brightWhite);
-	world.addAtEmptyLocation(player);
-	new PlayerAI(player);
-	return player;
+        Creature player = new Creature(world, '@', AsciiPanel.brightWhite);
+        world.addAtEmptyLocation(player);
+        new PlayerAI(player);
+        return player;
     }
 
 }
